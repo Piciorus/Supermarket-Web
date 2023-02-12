@@ -3,27 +3,27 @@ import { useNavigate } from "react-router-dom";
 import { AuthService } from "../Auth/AuthService";
 // import { AuthService } from "../autentificarea/AuthService";
 
-export default class AdminGuard {
+export default class ClientGuard {
   private authService: AuthService;
 
   public constructor(authService: AuthService) {
     this.authService = authService;
   }
 
-  public canActivateAdmin() {
+  public canActivateClient() {
     const user = this.authService.userValue;
-    if (this.checkAdmin(user.roles)) {
+    if (this.checkClient(user.roles)) {
       return true;
     } else {
       return false;
     }
   }
 
-  public checkAdmin(user: any) {
-    let isAdmin = false;
+  public checkClient(user: any) {
+    let isClient = false;
     user.forEach((role: any) => {
-      if (role.role === "ADMIN") isAdmin = true;
+      if (role.role === "CLIENT") isClient = true;
     });
-    return isAdmin;
+    return isClient;
   }
 }

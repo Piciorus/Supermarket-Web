@@ -2,7 +2,7 @@ import * as React from "react";
 import { AuthService } from "../../libs/Auth/AuthService";
 // import { AuthService } from "./auth/autentificarea/AuthService";
 
-const Tesing: React.FC = () => {
+const Client: React.FC = () => {
   const user = JSON.parse(localStorage.getItem("user") ?? "{}");
   const username = user.username;
 
@@ -15,9 +15,9 @@ const Tesing: React.FC = () => {
 
   return (
     <div>
-      Hello, {username} try stuf!<button onClick={handleSubmit}>Testing</button>
+      Hello, {username} !You are a client<button onClick={handleSubmit}>Testing</button>
     </div>
   );
 };
 
-export default Tesing;
+export default Client;

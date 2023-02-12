@@ -3,27 +3,27 @@ import { useNavigate } from "react-router-dom";
 import { AuthService } from "../Auth/AuthService";
 // import { AuthService } from "../autentificarea/AuthService";
 
-export default class AdminGuard {
+export default class EmployeeGuard {
   private authService: AuthService;
 
   public constructor(authService: AuthService) {
     this.authService = authService;
   }
 
-  public canActivateAdmin() {
+  public canActivateEmployee() {
     const user = this.authService.userValue;
-    if (this.checkAdmin(user.roles)) {
+    if (this.checkEmployee(user.roles)) {
       return true;
     } else {
       return false;
     }
   }
 
-  public checkAdmin(user: any) {
-    let isAdmin = false;
+  public checkEmployee(user: any) {
+    let isEmployee = false;
     user.forEach((role: any) => {
-      if (role.role === "ADMIN") isAdmin = true;
+      if (role.role === "EMPLOYEE") isEmployee = true;
     });
-    return isAdmin;
+    return isEmployee;
   }
 }

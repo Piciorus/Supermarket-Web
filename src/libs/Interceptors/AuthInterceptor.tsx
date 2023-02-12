@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AuthService } from "../Auth/AuthService";
 // import { AuthService } from "../autentificarea/AuthService";
 
 const apiClient = axios.create({
@@ -10,7 +11,7 @@ export default apiClient;
 
 apiClient.interceptors.response.use(
   (response: any) => response,
-  (error: { response: { status: number; }; message: any; }) => {
+  (error: { response: { status: number }; message: any }) => {
     if (error.response?.status === 401) {
       // this.authService.logout();
       console.log("logout");
@@ -26,9 +27,8 @@ apiClient.interceptors.request.use(
   (config: any) => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     const isLoogedIn = user.username;
-    
-    if(isLoogedIn){
-      config.headers.Authorization = "Basic " + btoa(user.username + ":" + user.password)
+    if (isLoogedIn) {
+      config.headers.Authorization = "Basic " + user.authData;
     }
     return config;
   },
@@ -36,4 +36,3 @@ apiClient.interceptors.request.use(
     Promise.reject(error);
   }
 );
-

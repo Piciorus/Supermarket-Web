@@ -1,15 +1,14 @@
-import apiClient from "../Interceptors/AuthInterceptor"
+import apiClient from "../Interceptors/AuthInterceptor";
 
 export const SupermarketService = {
-
   constructor() {},
 
   createSupermarket(name: string, address: string) {
-    return apiClient.post('/createSupermarket', { name, address});
+    return apiClient.post("/createSupermarket", { name, address });
   },
 
   getAllSupermarkets() {
-    return apiClient.get('/getAllSupermarkets');
+    return apiClient.get("/getAllSupermarkets");
   },
 
   getSupermarketById(id: number) {
@@ -20,8 +19,7 @@ export const SupermarketService = {
     return apiClient.delete(`/deleteSupermarketById/${id}`);
   },
 
-  updateSupermarketById(id: number){
+  updateSupermarketById(id: number) {
     return apiClient.put(`/updateSupermarketById/${id}`);
-  }
-
+  },
 };

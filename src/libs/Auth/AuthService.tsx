@@ -1,39 +1,32 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../Interceptors/AuthInterceptor";
-// import apiClient from "../Interceptors/auth-interceptor";
 import { User } from "../Model/User";
 
-
 export class AuthService {
-  navigate = useNavigate();
-  public user : User | undefined;
-  
+  private navigate = useNavigate();
+  public user: User | undefined;
 
-  
-  get userValue():any{
-    return JSON.parse(localStorage.getItem('user')||'{}');
+  public get userValue(): any {
+    return JSON.parse(localStorage.getItem("user") || "{}");
   }
 
-
-  login(user: User) {
+  public login(user: User) {
     return apiClient
       .post("/login", { username: user.username, password: user.password })
-      .then((response: { data: any; }) => {
-        // console.log(response);
-        localStorage.setItem("user", JSON.stringify(response.data));
-        localStorage.setItem("user1", JSON.stringify({username: user.username, password: user.password}));
-        // this.navigate("/hello");
+      .then((response: { data: any }) => {
+        user.authData = window.btoa(user.username + ':' + user.password);
+        localStorage.setItem("user", JSON.stringify({...response.data.data,authData:user.authData}));
         return response;
       });
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem("user");
     this.navigate("/login");
   }
 
-  register(user: User) {
+  public register(user: User) {
     return apiClient
       .post("/register", {
         username: user.username,

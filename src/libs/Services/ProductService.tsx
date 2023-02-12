@@ -6,23 +6,27 @@ export const ProductService = {
     constructor() {},
 
     addProductToSupermarket(id:number){
-        apiClient.post(`/addProductToSupermarket/${id}`)
+        return apiClient.post(`/addProductToSupermarket/${id}`)
     },
 
     deleteProductFromSupermarket(id:number){
-        apiClient.delete(`/deleteProductFromSupermarket/${id}`)
+        return apiClient.delete(`/deleteProductFromSupermarket/${id}`)
     },
 
     getAllProductsFromSupermarket(id:number){
-        apiClient.get(`/getAllProductsFromSupermarket/${id}`)
+        return apiClient.get(`/getAllProductsFromSupermarket/${id}`)
     },
 
     updateProductFromSupermarket(id:number){
-        apiClient.put(`/updateProductFromSupermarket/${id}`)
+        return apiClient.put(`/updateProductFromSupermarket/${id}`)
     },
 
     getProductById(id:number){
-        apiClient.get(`/getProductById/${id}`)
+        return apiClient.get(`/getProductById/${id}`)
+    },
+
+    getAllProducts(){
+        return apiClient.get(`/getAllProducts`)
     }
 
 }
