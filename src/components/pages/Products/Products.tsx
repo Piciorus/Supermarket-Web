@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
-import { AuthService } from "../../libs/Auth/AuthService";
-import { ProductService } from "../../libs/Services/ProductService";
-import { SupermarketService } from "../../libs/Services/SupermarketService";
-import { UserService } from "../../libs/Services/UserService";
+import { AuthService } from "../../../libs/Auth/AuthService";
+import { ProductService } from "../../../libs/Services/ProductService";
+import { SupermarketService } from "../../../libs/Services/SupermarketService";
+import { UserService } from "../../../libs/Services/UserService";
+import "./Products.scss"
 
 const Products: React.FC = () => {
   const user = JSON.parse(localStorage.getItem("user") ?? "{}");
@@ -29,10 +30,11 @@ const Products: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="header">
       Hello, {username}!WELCOMEEE HEREdd
       <button onClick={handleSubmit}>Logout</button>
-      <button onClick={testrequest}>Logodadaut</button>
+      <button onClick={testrequest}>Afisare Produse</button>
+      <div className="container">
       {productsList.map((product) => (
         <div key={product.name}>
           <p>Name: {product.name}</p>
@@ -40,6 +42,7 @@ const Products: React.FC = () => {
           <p>Price: {product.price}</p>
         </div>
       ))}
+      </div>
     </div>
   );
 };

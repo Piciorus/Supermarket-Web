@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AuthService } from "../../libs/Auth/AuthService";
+import { AuthService } from "../../../libs/Auth/AuthService";
 // import { AuthService } from "./auth/autentificarea/AuthService";
 
 const Unauthorized: React.FC = () => {

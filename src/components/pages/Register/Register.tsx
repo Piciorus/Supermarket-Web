@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
-import { AuthService } from "../../libs/Auth/AuthService";
-import { User } from "../../libs/Model/User";
+import { AuthService } from "../../../libs/Auth/AuthService";
+import { User } from "../../../libs/Model/User";
 // import { AuthService } from "./auth/autentificarea/AuthService";
 // import { User } from "./auth/Model/User";
 

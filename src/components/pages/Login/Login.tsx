@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthService } from "../../libs/Auth/AuthService";
-import AdminGuard from "../../libs/Guards/AdminGuard";
-import { User } from "../../libs/Model/User";
-import "../../index.css";
+import { AuthService } from "../../../libs/Auth/AuthService";
+import AdminGuard from "../../../libs/Guards/AdminGuard";
+import { User } from "../../../libs/Model/User";
+import "./Login.scss";
 import { Button, Stack } from "@mui/material";
 // import { AuthService } from "./auth/autentificarea/AuthService";
 // import AdminGuard from "./auth/Guards/adminguard";
