@@ -1,108 +1,159 @@
 .main {
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    padding-top: 90px;
-    padding-bottom: 100px;
-    background-color: black;
-    background-image: url("../../../assets/login2.png");
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 90px;
+  padding-bottom: 100px;
+  background-color: black;
+  background-image: url("../../../assets/login2.png");
+}
+.sub-main {
+  display: flex;
+  justify-content: center;
+  height: 550px;
+  width: 25%;
+  padding-top: 30px;
+  border-radius: 60px;
+  background-color: rgba(255, 255, 255, 0.152);
+}
+.imgs {
+  padding-top: 20px;
+  justify-content: center;
+  display: flex;
+}
+.container-image {
+  background-color: rgba(223, 221, 221, 0.705);
+  border-radius: 150px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 115px;
+  width: 115px;
+  margin-bottom: 20px;
+}
+.profile {
+  height: 100px;
+  width: 100px;
+  border-radius: 130px;
+}
+
+input {
+  width: 300px;
+  height: 50px;
+  border-radius: 60px;
+  box-shadow: inset 0px 0px 25px 0px #888;
+  border: none;
+  outline: none;
+  background-color: #fff;
+}
+
+.email {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  padding: 14px 0 0 25px;
+}
+
+.name {
+  padding-left: 15px;
+  font-size: 20px;
+}
+.second-input {
+  padding-top: 20px;
+}
+
+.button {
+  width: 300px;
+  height: 50px;
+  border-radius: 60px;
+  background-color: grey;
+  color: white;
+  font-size: 25px;
+  border: none;
+  margin-top: 20px;
+}
+.login-button {
+  padding-top: 25px;
+}
+
+.iconemail {
+  width: 25px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  padding-top: 10px;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: black;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 20px;
+  border: 3px solid rgb(130, 10, 10);
+}
+
+@media only screen and (min-width: 320px) and (max-width: 820px) {
+  .main {
+    padding-top: auto;
+    padding-bottom: auto;
   }
+
   .sub-main {
-    display: flex;
-    justify-content: center;
-    height: 550px;
-    width: 25%;
-    padding-top: 30px;
-    border-radius: 60px;
-    background-color: rgba(255, 255, 255, 0.152);
+    height: 60%;
+    width: 70%;
   }
+
   .imgs {
-    padding-top: 20px;
-    justify-content: center;
-    display: flex;
-  }
-  .container-image {
-    background-color: rgba(223, 221, 221, 0.705);
-    border-radius: 150px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: 115px;
-    width: 115px;
-    margin-bottom: 20px;
-  }
-  .profile {
-    height: 100px;
-    width: 100px;
-    border-radius: 130px;
-  }
-  
-  input {
-    width: 300px;
-    height: 50px;
-    border-radius: 60px;
-    box-shadow: inset 0px 0px 25px 0px #888;
-    border: none;
-    outline: none;
-    background-color: #fff;
-  }
-  
-  .email {
-    height: 25px;
-    width: 25px;
-    position: absolute;
-    padding: 14px 0 0 25px;
-  }
-  
-  .name {
-    padding-left: 15px;
-    font-size: 20px;
-  }
-  .second-input {
-    padding-top: 20px;
-  }
-  
-  .button {
-    width: 300px;
-    height: 50px;
-    border-radius: 60px;
-    background-color: grey;
-    color: white;
-    font-size: 25px;
-    border: none;
-    margin-top: 20px;
-  }
-  .login-button {
-    padding-top: 25px;
-  }
-  
-  .iconemail {
-    width: 25px;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-  
-  .error {
-    color: red;
     padding-top: 10px;
   }
-  
-  body::-webkit-scrollbar {
-    width: 12px;
+
+  .container-image {
+    height: 60px;
+    width: 60px;
   }
-  
-  body::-webkit-scrollbar-track {
-    background: black;
+
+  .profile {
+    height: 50px;
+    width: 50px;
+    border-radius: 65px;
   }
-  
-  body::-webkit-scrollbar-thumb {
-    background-color: black;
-    border-radius: 20px;
-    border: 3px solid rgb(130, 10, 10);
+
+  input {
+    width: 90%;
+    height: 40px;
   }
-  
+
+  .email {
+    padding: 7px 0 0 12px;
+  }
+
+  .name {
+    font-size: 15px;
+  }
+
+  .button {
+    width: 90%;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .iconemail {
+    width: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+}
