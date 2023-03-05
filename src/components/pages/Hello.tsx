@@ -38,7 +38,11 @@ const GreetingPage: React.FC = () => {
       <button onClick={handleSubmit}>Logout</button>
       <button onClick={testrequest}>Test</button>
       <button onClick={() => navigate("/products")}>Go to products page</button>
-      
+      <div className="nav">
+        <ul>Nested example</ul>
+        <li>Try it</li>
+        <li>Example</li>
+      </div>
     </div>
   );
 };

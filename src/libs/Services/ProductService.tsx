@@ -1,32 +1,42 @@
 // import apiClient from "../Interceptors/auth-interceptor"
 
-import apiClient from "../Interceptors/AuthInterceptor"
+import apiClient from "../Interceptors/AuthInterceptor";
+import { Product } from "../Model/Product";
 
 export const ProductService = {
-    constructor() {},
+  constructor() {},
 
-    addProductToSupermarket(id:number){
-        return apiClient.post(`/addProductToSupermarket/${id}`)
-    },
+  addProduct(product: Product) {
+    return apiClient.post(`/addProduct`, {
+      name: product.name,
+      category: product.category,
+      brand: product.brand,
+      expirationDate: product.expirationDate,
+      price: product.price,
+    });
+  },
 
-    deleteProductFromSupermarket(id:number){
-        return apiClient.delete(`/deleteProductFromSupermarket/${id}`)
-    },
+  addProductToSupermarket(id: string) {
+    return apiClient.post(`/addProductToSupermarket/${id}`);
+  },
 
-    getAllProductsFromSupermarket(id:number){
-        return apiClient.get(`/getAllProductsFromSupermarket/${id}`)
-    },
+  deleteProductFromSupermarket(id: string) {
+    return apiClient.delete(`/deleteProductFromSupermarket/${id}`);
+  },
 
-    updateProductFromSupermarket(id:number){
-        return apiClient.put(`/updateProductFromSupermarket/${id}`)
-    },
+  getAllProductsFromSupermarket(id: number) {
+    return apiClient.get(`/getAllProductsFromSupermarket/${id}`);
+  },
 
-    getProductById(id:number){
-        return apiClient.get(`/getProductById/${id}`)
-    },
+  updateProductFromSupermarket(id: string) {
+    return apiClient.put(`/updateProductPrice/${id}`);
+  },
 
-    getAllProducts(){
-        return apiClient.get(`/getAllProducts`)
-    }
+  getProductById(id: number) {
+    return apiClient.get(`/getProductById/${id}`);
+  },
 
-}
+  getAllProducts() {
+    return apiClient.get(`/getAllProducts`);
+  },
+};

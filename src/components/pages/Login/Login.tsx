@@ -33,6 +33,7 @@ const Login = () => {
     user.password = password;
     user.username = usernameRef.current!.value;
     user.password = passwordRef.current!.value;
+    
     authService.login(user).then(() => {
       if (adminguard.canActivateAdmin()) {
         navigate("/admin");
@@ -40,6 +41,7 @@ const Login = () => {
         navigate("/testing");
       }
     });
+
   };
 
   const handleSubmit1 = (event: React.FormEvent) => {

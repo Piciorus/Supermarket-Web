@@ -37,7 +37,7 @@ export class AuthService {
         phone: user.phone,
       })
       .then((response: any) => {
-        this.navigate("/hello");
+        // this.navigate("/test");
         localStorage.setItem("user", JSON.stringify(user));
         return response;
       });
