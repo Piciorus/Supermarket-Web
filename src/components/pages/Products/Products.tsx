@@ -12,13 +12,7 @@ const Products: React.FC = () => {
   const [productsList, setProductsList] = useState<
     Array<{ id: string; name: string; category: string; price: number }>
   >([]);
-  const [newProduct, setNewProduct] = useState<Product>({
-    name: "",
-    category: "",
-    price: 0,
-    expirationDate: "",
-    brand: "",
-  });
+
   const username = user.username;
   const getAllProducts = (event: React.FormEvent) => {
     if (event) {
@@ -97,6 +91,68 @@ const Products: React.FC = () => {
           <button onClick={getAllProducts}>Afisare Produse</button>
         </div>
         <br></br>
+        <button
+          onClick={(event: React.FormEvent) =>
+            ProductService.filterByPriceAscending().then((response: any) => {
+              setProductsList(response.data);
+              {
+                productsList.map((product) => (
+                  <tr key={product.name}>
+                    <td>{product.name}</td>
+                    <td>{product.category}</td>
+                    <td>{product.price}</td>
+                    <td>
+                      <button
+                        onClick={(event: React.FormEvent) =>
+                          ProductService.deleteProductFromSupermarket(
+                            product.id
+                          ).then(() => {
+                            getAllProducts(event);
+                          })
+                        }
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ));
+              }
+            })
+          }
+        >
+          FilterAscending
+        </button>
+        <button
+          onClick={(event: React.FormEvent) =>
+            ProductService.filterByPriceDescending().then((response: any) => {
+              setProductsList(response.data);
+              {
+                productsList.map((product) => (
+                  <tr key={product.name}>
+                    <td>{product.name}</td>
+                    <td>{product.category}</td>
+                    <td>{product.price}</td>
+                    <td>
+                      <button
+                        onClick={(event: React.FormEvent) =>
+                          ProductService.deleteProductFromSupermarket(
+                            product.id
+                          ).then(() => {
+                            getAllProducts(event);
+                          })
+                        }
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ));
+              }
+            })
+          }
+        >
+          FilterDescending
+        </button>
         <table className="table">
           <thead>
             <tr>
@@ -124,6 +180,7 @@ const Products: React.FC = () => {
                   >
                     Delete
                   </button>
+                  <button>Update Price</button>
                 </td>
               </tr>
             ))}

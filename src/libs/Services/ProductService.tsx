@@ -16,6 +16,14 @@ export const ProductService = {
     });
   },
 
+  filterByPriceAscending() {
+    return apiClient.get(`/getProductsOrderByPrice`);
+  },
+
+  filterByPriceDescending() {
+    return apiClient.get(`/getProductsOrderByPriceDesc`);
+  },
+
   addProductToSupermarket(id: string) {
     return apiClient.post(`/addProductToSupermarket/${id}`);
   },
