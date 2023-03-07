@@ -12,6 +12,7 @@ const Products: React.FC = () => {
   const [productsList, setProductsList] = useState<
     Array<{ id: string; name: string; category: string; price: number }>
   >([]);
+  const authService = new AuthService();
 
   const username = user.username;
   const getAllProducts = (event: React.FormEvent) => {
@@ -23,7 +24,29 @@ const Products: React.FC = () => {
       setProductsList(products);
     });
   };
-  const authService = new AuthService();
+
+  const deleteProduct = (event: React.FormEvent, id: string) => {
+    if (event) {
+      event.preventDefault();
+    }
+    ProductService.deleteProductFromSupermarket(id).then(() => {
+      getAllProducts(event);
+    });
+  };
+
+  const filterByPriceAscending = (event: React.FormEvent) => {
+    event.preventDefault();
+    ProductService.filterByPriceAscending().then((response: any) => {
+      setProductsList(response.data);
+    });
+  };
+
+  const filterByPriceDescending = (event: React.FormEvent) => {
+    event.preventDefault();
+    ProductService.filterByPriceDescending().then((response: any) => {
+      setProductsList(response.data);
+    });
+  };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -40,6 +63,7 @@ const Products: React.FC = () => {
   const priceRef = useRef<HTMLInputElement>(null);
   const expirationDateRef = useRef<HTMLInputElement>(null);
   const brandRef = useRef<HTMLInputElement>(null);
+  const [newPrice, setNewPrice] = useState<number>(0);
 
   const addProduct = (event: React.FormEvent) => {
     event.preventDefault();
@@ -56,6 +80,17 @@ const Products: React.FC = () => {
     product.brand = brandRef.current!.value;
     ProductService.addProduct(product).then((response: any) => {
       console.log(response);
+      getAllProducts(event);
+    });
+  };
+
+  const updatePrice = (
+    event: React.FormEvent,
+    id: string,
+    price: number
+  ): void => {
+    event.preventDefault();
+    ProductService.updateProductFromSupermarket(id, price).then(() => {
       getAllProducts(event);
     });
   };
@@ -92,64 +127,12 @@ const Products: React.FC = () => {
         </div>
         <br></br>
         <button
-          onClick={(event: React.FormEvent) =>
-            ProductService.filterByPriceAscending().then((response: any) => {
-              setProductsList(response.data);
-              {
-                productsList.map((product) => (
-                  <tr key={product.name}>
-                    <td>{product.name}</td>
-                    <td>{product.category}</td>
-                    <td>{product.price}</td>
-                    <td>
-                      <button
-                        onClick={(event: React.FormEvent) =>
-                          ProductService.deleteProductFromSupermarket(
-                            product.id
-                          ).then(() => {
-                            getAllProducts(event);
-                          })
-                        }
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ));
-              }
-            })
-          }
+          onClick={(event: React.FormEvent) => filterByPriceAscending(event)}
         >
           FilterAscending
         </button>
         <button
-          onClick={(event: React.FormEvent) =>
-            ProductService.filterByPriceDescending().then((response: any) => {
-              setProductsList(response.data);
-              {
-                productsList.map((product) => (
-                  <tr key={product.name}>
-                    <td>{product.name}</td>
-                    <td>{product.category}</td>
-                    <td>{product.price}</td>
-                    <td>
-                      <button
-                        onClick={(event: React.FormEvent) =>
-                          ProductService.deleteProductFromSupermarket(
-                            product.id
-                          ).then(() => {
-                            getAllProducts(event);
-                          })
-                        }
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ));
-              }
-            })
-          }
+          onClick={(event: React.FormEvent) => filterByPriceDescending(event)}
         >
           FilterDescending
         </button>
@@ -164,23 +147,31 @@ const Products: React.FC = () => {
           </thead>
           <tbody>
             {productsList.map((product) => (
-              <tr key={product.name}>
+              <tr key={product.id}>
                 <td>{product.name}</td>
                 <td>{product.category}</td>
                 <td>{product.price}</td>
                 <td>
                   <button
                     onClick={(event: React.FormEvent) =>
-                      ProductService.deleteProductFromSupermarket(
-                        product.id
-                      ).then(() => {
-                        getAllProducts(event);
-                      })
+                      deleteProduct(event, product.id)
                     }
                   >
                     Delete
                   </button>
-                  <button>Update Price</button>
+                  <button
+                    onClick={(event: React.FormEvent) =>
+                      updatePrice(event, product.id, newPrice)
+                    }
+                  >
+                    Update Price
+                  </button>
+                  <input
+                    type="number"
+                    style={{ width: "100px", height: "20px" }}
+                    placeholder="New price"
+                    onChange={(e) => setNewPrice(Number(e.target.value))}
+                  />
                 </td>
               </tr>
             ))}
@@ -188,7 +179,7 @@ const Products: React.FC = () => {
         </table>
         <br></br>
         <br></br>
-        <form className="form" onSubmit={addProduct}>
+        <form className="form">
           <div>
             <input
               ref={nameRef}

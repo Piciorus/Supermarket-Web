@@ -36,8 +36,11 @@ export const ProductService = {
     return apiClient.get(`/getAllProductsFromSupermarket/${id}`);
   },
 
-  updateProductFromSupermarket(id: string) {
-    return apiClient.put(`/updateProductPrice/${id}`);
+  updateProductFromSupermarket(id: string,price:number) {
+    return apiClient.put(`/updateProductPrice/${id}`,
+    {
+      price: price
+    });
   },
 
   getProductById(id: number) {
